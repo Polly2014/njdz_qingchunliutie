@@ -1,0 +1,194 @@
+{% load staticfiles %}
+{% load polly_tag %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>题海纵横--南京东站</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery-1.9.1.min.js' %}" type="text/javascript"></script>
+    <style>
+        body{background:#22272c;}
+        .question{display: none;}    
+    </style>
+</head>
+<body>
+    <div class="normal">
+        {% if not question_list %}
+            <p>No question</p>
+        {% else %}
+            {% for question in question_list %}
+            <div id="question_{{ forloop.counter }}" class="question">
+                <span>
+                    <div class="normal2">
+                        <h3>{{ forloop.counter }}</h3><h2><span>{{ question.question }}</span></h2>
+                    </div>
+                    {% if question.is_choice %}
+                    <ul> 
+                        <label><li><input type="radio" name="ck" value="A">{{question.choice_A}}</li></label>
+                        <label><li><input type="radio" name="ck" value="B">{{question.choice_B}}</li></label>
+                        <label><li><input type="radio" name="ck" value="C">{{question.choice_C}}</li></label>
+                        <label><li><input type="radio" name="ck" value="D">{{question.choice_D}}</li></label>
+                    </ul>
+                    {% endif %}
+                    {% if question.is_multichoice %}
+                    <ul> 
+                        <label><li><input type="checkbox" name="ck" value="A">{{question.choice_A}}</li></label>
+                        <label><li><input type="checkbox" name="ck" value="B">{{question.choice_B}}</li></label>
+                        <label><li><input type="checkbox" name="ck" value="C">{{question.choice_C}}</li></label>
+                        <label><li><input type="checkbox" name="ck" value="D">{{question.choice_D}}</li></label>
+                    </ul>
+                    {% endif %}
+                    {% if question.is_judge %}
+                    <ul> 
+                        <label><li><input type="radio" name="ck" value="1">正确</li></label>
+                        <label><li><input type="radio" name="ck" value="0">错误</li></label>
+                    </ul>
+                    {% endif %}
+                </span>
+                <div class="normal3">
+                    <a href="#" onclick="Submit({{ forloop.counter }});"><img src="/static/images/btn_close.png"></a>
+                    <a href="#" onclick="GetNextQuestion({{ forloop.counter }});"><img src="/static/images/btn_next.png"></a>
+                    <a href="#" onclick="SubmitAndGetNextQuestion({{ forloop.counter }});"><img src="/static/images/btn_submit.png"></a>
+                    <!--
+                    <br />
+                    <a href="#"><button type="submit" onclick="SubmitAndGetNextQuestion({{ forloop.counter }});">提交</button></a> 
+                    <a href="#"><button type="button" onclick="GetNextQuestion({{ forloop.counter }});">跳过</button></a>
+                    -->
+                </div>
+            </div>
+                {% if question.is_judge %}
+                    <input type="hidden" name="right_answer" id="right_answer_{{ forloop.counter }}" value="{{ question.right_answer|toBool }}" />
+                {% else %}
+                    <input type="hidden" name="right_answer" id="right_answer_{{ forloop.counter }}" value="{{ question.right_answer|clear }}" />
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <div style="width:100%; height:30px; background:white; margin-top:30px; overflow:hidden; display:none;">
+            start_time:<span>{{ request.session.start_time }}</span><br />
+            score:<span id="score">{{ request.session.score }}</span>
+        </div>
+
+        <div class="normal1" style="display:none;">
+            <div id="timer" style="color:Red"></div>
+            <p style="display:none;">得分：<span id="span3">0</span>分</p>
+            <p>正确/全部：<span id="right_num">0</span>/<span id="total_num">0</span></p>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+function Submit(questionNo){
+    var right_num = parseInt($('#right_num').html());
+    var total_num = parseInt(questionNo);
+    var score = $('#score').html()
+    alert('本次答题结束!得分:' + score);
+    window.location.href = "{{ pre_info_url }}" + right_num + '/' + total_num + '/';
+};
+function GetNextQuestion(questionNo){
+    //window.location.href = "{{next_question_url}}";
+    //$('#Span_'+questionNo).html()
+    //$('#question_{}')
+    //questionNo = questionNo + 1;
+    var right_num = parseInt($('#right_num').html());
+    var total_num = parseInt(questionNo);
+    if( questionNo=={{ request.session.total_length }} ){
+        var score = $('#score').html()
+        alert('已经没有题目了!得分:' + score);
+        window.location.href = "{{ pre_info_url }}" + right_num + '/' + total_num + '/';
+    }
+    else{
+        var right_answer = $('#right_answer_'+questionNo).val();
+        if(right_answer==1){
+            right_answer = "正确";
+        }
+        if(right_answer==0){
+            right_answer = "错误";
+        }
+        alert('该题正确答案是:'+right_answer);
+        $('#total_num').html(questionNo);
+        nextQuestionNo = questionNo + 1;
+        $('#question_'+questionNo).css({'display':'none'});
+        $('#question_'+nextQuestionNo).css({'display':'block'});
+    }
+};
+function SubmitAndGetNextQuestion(questionNo){
+    var right_num = parseInt($('#right_num').html());
+    var total_num = parseInt(questionNo);
+    if( questionNo=={{ request.session.total_length }} ){
+        var score = $('#score').html()
+        alert('已经没有题目了!得分:' + score);
+        window.location.href = "{{ pre_info_url }}" + right_num + '/' + total_num + '/';
+    }
+    else{    
+        var score = $('#score').html();
+        var right_answer = $('#right_answer_'+questionNo).val();
+        var user_answer = ''
+        $('#question_'+questionNo+' input[name=ck]:checked').each(function(){
+            user_answer += $(this).val();
+        });
+
+        //alert(user_answer + "|" + right_answer);
+        //alert(Boolean(user_answer)+'|'+Boolean(right_answer));
+        if( user_answer==right_answer ){
+            //alert(user_answer);
+            //alert( right_answer);
+            alert('恭喜你，答对了！');
+            var score = parseInt(score) + 1;
+            $('#right_num').html(right_num+1);
+            $('#score').html(score);
+        }
+        else{
+            if(right_answer==1){
+                right_answer = "正确";
+            }
+            if(right_answer==0){
+                right_answer = "错误";
+            }
+            alert('很遗憾，答错了，该题正确答案是:'+right_answer);
+        }
+        $('#total_num').html(questionNo);
+        nextQuestionNo = questionNo + 1;
+        $('#question_'+questionNo).css({'display':'none'});
+        $('#question_'+nextQuestionNo).css({'display':'block'});
+
+    }
+    //score = parseInt(score) + 3;
+    //$('#score').html(score);
+    //var right_num = parseInt($('#right_num').html());
+    
+    //$('#total_num').html(questionNo);
+};
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    //question_content = $('#question_1').html();
+    //$('.question').css({'display':'none'});
+    $('#question_{{ request.session.start_question_no }}').css({'display':'block'});
+    //$('.normal1').append(question_content);
+    //alert(question_content);
+    //GetQuestionTY();
+});
+</script>
+
+<!--
+<script type="text/javascript">
+    // 列表 list
+    $('#list').click(function(){
+        var step = $("#Span2").html();
+
+
+        $.getJSON("{% url 'ajax_list' %}",function(ret){
+            //返回值 ret 在这里是一个列表
+            $.each(ret, function(i,item){
+                // i 为索引，item为遍历值
+                 $('#list_result').append(item.question + '<br />');
+                 $('.normal2 h2').html(item.right_answer)
+            });
+        });
+    });
+</script>
+-->
+</html>

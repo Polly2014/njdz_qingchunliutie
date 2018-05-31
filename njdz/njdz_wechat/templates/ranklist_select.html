@@ -1,0 +1,33 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>达人榜--南京东站</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery-1.9.1.min.js' %}" type="text/javascript"></script>
+</head>
+<body class="ranklist_body">
+    <div class="ranklist_select_page">
+        <div class="ranklist_select_menu">        
+            <a href="week/">
+                <img src="/static/images/ranklist_1.png" alt="周排行"/>
+            </a> 
+            <a href="month/">
+                <img src="/static/images/ranklist_2.png" alt="月排行"/>
+            </a>
+            <a href="quarter/">
+                <img src="/static/images/ranklist_3.png" alt="季度排行"/>
+            </a> 
+            <a href="year/">
+                <img src="/static/images/ranklist_4.png" alt="年度排行"/>
+            </a>
+            <a href="/">
+                <img src="/static/images/return.png" alt="返回"/>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

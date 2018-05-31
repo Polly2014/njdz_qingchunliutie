@@ -1,0 +1,72 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>下载--南京东站</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery-1.9.1.min.js' %}" type="text/javascript"></script>
+</head>
+<body class="download_body">
+	<div class="download_page">
+		<div class="download_form">
+			<form method="get" action="/download/" id="download_form_month">
+				<fieldset form="down_form_month">
+					<legend>按月生成</legend>
+					<label for="year_1">年份：
+					<select id="year_1" name="year_1">
+						<option value="2016">2016</option>
+					</select>
+					</label>
+					<br />
+					<label for="month">月份：
+					<select id="month" name="month">
+						{% for month in month_list %}
+						<option value="{{ month }}">{{ month }}</option>
+						{% endfor %}
+					</select>
+					</label>
+					<br />
+					<input id="month_submit" type="button" value="下载" />
+				</fieldset>
+			</form>
+			<form method="get" action="/download/" id="download_form_week">
+				<fieldset form="down_form_week">
+					<legend>按周生成</legend>
+					<label for="year_2">年份：
+					<select id="year_2" name="year_2">
+						<option value="2016">2016</option>
+					</select>
+					</label>
+					<br />
+					<label for="week">周数：
+					<select id="week" name="week">
+						{% for week in week_list %}
+						<option value="{{ week }}">{{ week }}</option>
+						{% endfor %}
+					</select>
+					</label>
+					<br />
+					<input id="week_submit" type="button" value="下载" />
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#month_submit').click(function(){
+		var year = $('#year_1').val();
+		var month = $('#month').val();
+		window.location.href = '/month/' + year + '/' + month;
+	});
+	$('#week_submit').click(function(){
+		var year = $('#year_2').val();
+		var week = $('#week').val();
+		window.location.href = '/week/' + year + '/' + week;
+	});
+});
+</script>
+</html>

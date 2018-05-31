@@ -1,0 +1,148 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>信息录入--南京东站</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery-1.9.1.min.js' %}" type="text/javascript"></script>
+</head>
+<body class="info_body">
+    <div class="information">
+        <div class="inf">
+            <div class="inf1">
+                <p>填写个人信息</p>
+                <ul>
+                    <li><label for="name"></label><input type="text" id="name" placeholder="姓名" value=""></li>
+                    <li><label for="department"></label><input type="text" id="department" value="{{ request.session.department }}" readonly="true"></li>
+                    <li>
+                        <label></label>
+                        <select id="gongzhong" name="gongzhong">
+                            <option value="" disabled selected style='display:none;'>车间(站)</option>
+                            <option value="到达场">到达场</option>
+                            <option value="出发场">出发场</option>
+                            <option value="设备">设备</option>
+                            <option value="货检">货检</option>
+                            <option value="调度">调度</option>
+                            <option value="紫金山">紫金山</option>
+                            <option value="中华门">中华门</option>
+                            <option value="古雄">古雄</option>
+                            <option value="龙潭">龙潭</option>
+                            <option value="兴卫村">兴卫村</option>
+                            <option value="林场">林场</option>
+                            <option value="南京北">南京北</option>
+                            <option value="浦镇">浦镇</option>
+                            <option value="机关">机关</option>
+                            <option value="栖霞北">栖霞北</option>
+                        </select>
+                    </li>
+                    <li><label for="work_id"></label><input type="text" id="work_id" placeholder="工号(岗位星级考试)" value=""></li>
+                    <!--
+                    <li><label>手机号</label><input type="text" id="phone"></li>
+                    <li><label>微信号</label><input type="text" id="weixin"></li>
+                    <li><label>开始时间</label><input type="text" id="start_time" value="{{ request.session.start_time }}"></li>
+                    <li><label>结束时间</label><input type="text" id="end_time" value="{{ request.session.end_time }}"></li>
+                    <li><label>成绩</label><input type="text" id="score" value="{{ request.session.score }}"></li>
+                    -->
+                </ul>
+                <!--
+                <a href="/polly/" onclick="GetScore()">
+                    <button type="submit">确 定</button>
+                </a>
+                -->
+                <img id="submit" src="/static/images/reg_sub.png" alt="提交" />
+                <!--<button type="submit"></button>-->
+            </div>
+            <span id="exam_type" style="display:none;">{{ request.session.exam_type }}</span>
+            <span id="end_time" style="display:none;">{{ request.session.end_time }}</span>
+            <div class="cover" style=""></div>
+        </div>
+        
+    </div>
+    <div style="display:none;">
+        {% for user in user_list %}
+        <input id="{{ user.work_id }}" value="{{ user.name }}"/>
+        {% endfor %}
+    </div>
+    <form method="post" action="/result/" id="form_info">
+        <!--
+        <div class="aspNetHidden">
+            <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTI5NDMzNDM5MWRk0fWTwFbwG1fOFScsXh4moTWf+LKH/58iDe/mFDa7fqI=" />
+        </div>
+        <div class="aspNetHidden">
+        	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="19A8A2BB" />
+        	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAXMgRWyoKBVt06LGPkRXJfBYhM0SpqGl6sQ9WQzHF7zLmdBjGLllfEU2Bmrb7XyYubm22qGzop7SJiGO6ulamSvkNiy7xqYaToq9efm5wSL2RUnO6PUikcodc97wB/Ju5quwAxlS2TEdLS106oWIfKm" />
+        </div>
+        -->
+        <input type="hidden" name="HiddenField1" id="HiddenField1" value="" />
+        <input type="hidden" name="HiddenField2" id="HiddenField2" value="" />
+        <input type="hidden" name="HiddenField3" id="HiddenField3" value="" />
+        <input type="hidden" name="HiddenField4" id="HiddenField4" value="" />
+    </form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+    var exam_type = $('#exam_type').html()
+    if({{ request.session.tag_submited }}==0){
+        if(exam_type=='zfdm'){
+            alert('本次答题结束！耗时:'+{{ request.session.exam_time }}+'(s), 得分:'+{{ request.session.score }}+'分');
+        };
+        if(exam_type=='thzh'){
+            alert('本次答题结束！耗时:'+{{ request.session.exam_time }}+'(s), 得分:'+{{ request.session.score }}+'分');
+        };
+        if(exam_type=='yzdd'){
+            alert('本次答题结束！耗时:'+{{ request.session.exam_time }}+'(s), 得分:'+{{ request.session.score }}+'分');
+        };
+    }else{
+        alert("本次成绩已录入，请勿重复提交!");
+        window.location.href = "/result/";
+    }
+    //var mydate = new Date();
+    //alert(mydate.toLocaleString());
+    $('#submit').click(function(){
+
+        if({{ request.session.tag_submited }}){
+            alert("本次成绩已录入，请勿重复提交!");
+            window.location.href = "/result/";
+        }else{
+            var name = $('#name').val();
+            var department = $('#department').val();
+            var gongzhong = $('#gongzhong').val();
+            var work_id = $('#work_id').val();
+            var u_name = $('#'+work_id).val();
+
+            if(name){
+                $('#HiddenField1').val(name);
+                if(gongzhong){
+                    $('#HiddenField3').val(gongzhong);
+                    if(work_id){
+                        if(name==u_name){
+                            $('#HiddenField2').val(department);
+                            $('#HiddenField4').val(work_id);
+                            $('#form_info').submit();
+                        }else{
+                            alert('姓名与工号信息不匹配！');
+                        }
+                    }else{
+                        alert('请填写工号信息！');
+                        $('#work_id').focus();
+                    }
+                }else{
+                    alert('请选择工种信息！');
+                    $('#gongzhong').focus();
+                }
+            }else{
+                alert('请填写姓名信息！');
+                $('#name').focus();
+            }
+        }
+
+    });
+});
+</script>
+<!--
+<script src="{% static 'js/script.js' %}" type="text/javascript"></script>
+-->
+</html>

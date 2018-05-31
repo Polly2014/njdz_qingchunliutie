@@ -1,0 +1,575 @@
+@charset "utf-8";
+/* CSS Document */
+body, div, dl, dt, dd, ul, ol, li, h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td {
+	margin:0;
+	padding:0;
+}
+html{
+	font-size:100%;}
+img{
+	display:block}
+*{font-family:"微软雅黑";}
+/*-----------------*/
+h1,h2,h3,h4,h5,h6 {
+	cursor:default;
+	font-size:100%;
+	font-weight:normal;}
+/*-----------------*/
+ul, ol ,li{
+	list-style:none;}
+/*-----------------*/
+address, caption,cite,code,dfn,em,th,var {
+	font-style:normal;
+	font-weight:normal;}
+/*-----------------*/
+table {
+	border-collapse:collapse;
+	border-spacing:0;}
+/*-----------------*/
+fieldset, img {
+	border:0;}
+/*-----------------*/
+caption,th {
+	text-align:left;}
+/*-----------------*/
+q:before, q:after {
+	content:'';}
+/*-----------------*/
+a {
+	text-decoration:none;
+	color:#000;}
+a:hover {
+	text-decoration:none;
+	}
+/*-----------------*/
+th {
+	text-align:left;}
+/*-----------------*/
+.clear {
+	clear:both;}
+/*-----------------*/
+body{
+     font-family:微软雅黑;
+	 font-size:12px;}
+body,html{
+	height:100%;}
+button{
+	cursor:pointer;}
+p{
+	cursor:default}
+input:focus{
+	outline:none}
+html,body{
+	height:100%;}
+
+
+
+/*--------首页的页面---------*/
+.body{
+	background-color:#cfe9ff;}
+.homepage{
+	position:relative;
+	max-width:640px;
+	width:100%;
+	margin:0 auto;
+	height:100%;
+	background:url(../images/index1.jpg) no-repeat;
+	background-position:center top;
+	overflow:hidden;
+	background-size:100%;
+	}
+.homepage ul{
+	font-size:1.2em;
+	position:absolute;
+	color:#666;
+	left:18%;
+	top:40%;
+	}
+
+.homepage a button{
+	width:74.375%;
+	height:2.4em;
+	display:block;
+	margin:0 auto;
+	background-color:#ff7800;
+	border:none;
+	border-radius:4px;
+	color:#FFF;
+	margin-top:96%;
+	font-size:1.4em;
+	}
+
+.homepage a+a button{
+	width:74.375%;
+	height:2.4em;
+	display:block;
+	margin:0 auto;
+	background-color:#2c88d5;
+	border:none;
+	border-radius:4px;
+	color:#FFF;
+	margin-top:5%;
+	font-size:1.4em;
+	}
+.homepage>p{
+	width:75%;
+	display:block;
+	margin:0 auto;
+	margin-top:10%;
+	font-size:1.2em;
+	color:#585858;
+	text-align:left;}
+.homepage>p span{
+	color:#fe4800;}
+
+/*--------进入的页面---------*/
+.body1{
+	width:100%;
+	background-color:#305caa;
+	overflow:hidden;}
+
+
+.enter{
+	width:100%;
+	max-width:640px;
+	margin:0 auto;
+	height:100%;
+	background:url(../images/enter1.png) no-repeat;
+	background-size:100%;
+	padding-top:12%;
+	background-position:center bottom;
+
+	}
+.enter button{
+	width:68.125%;
+	display:block;
+	margin:0 auto;
+	height:2.6em;
+	margin-bottom:6%;
+	color:#3060ad;
+	outline:none;
+	font-size:1.4em;
+	letter-spacing:0.2em;
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#FFF), to(#a9dcf8));
+	background:-moz-gradient(linear, 0 0, 0 100%, from(#FFF), to(#a9dcf8));
+	background:-ms-gradient(linear, 0 0, 0 100%, from(#FFF), to(#a9dcf8));
+	background:-o-gradient(linear, 0 0, 0 100%, from(#FFF), to(#a9dcf8));
+	background:gradient(linear, 0 0, 0 100%, from(#FFF), to(#a9dcf8));
+	border:none;
+	border-radius:6px;
+	border:#a9dcf8 solid 1px;
+	
+	}
+
+/*--------答题排行榜---------*/
+.body2{
+	width:100%;
+	background-color:#005ab1;}
+.ruler{
+	font-size:100%;
+	max-width:640px;
+	width:100%;
+	margin:0 auto;
+	overflow:hidden;
+	background:url(../images/rulenew.jpg) no-repeat;
+	background-position:center bottom;
+	background-size:100%;
+	padding-top:4%;
+	position:relative;}
+.ruler>img{
+	display:block;
+	width:72.8%;
+	margin:0 auto;
+	}
+.ruler>ul{
+	display:block;
+	width:73%;
+	background-color:#ffd687;
+	height:3em;
+	border-radius:4px;
+	line-height:2.8em;
+	margin-top:-.4em;
+	position:absolute;
+	left:13.5%;
+	
+	}
+.ruler>ul li{
+	float:left;
+	font-size:1.4em;
+	color:#ff5400;
+	width:24%;
+	text-align:center;
+	border-right:#ffc014 solid 1px;
+	line-height:1.8em;
+	}
+.ruler>ul li:last-child{
+	border:none;
+	}
+.table{
+	width:80%;
+	margin:0 auto;
+	background-color:#006cbd;
+	border-radius:4px;
+	padding-top:1.4em;
+	margin-top:1em;
+	}
+.table table{
+	width:90%;
+	margin:0 auto;
+	}	
+	
+.table table th,.table table td{
+	text-align:center;
+	height:2.8em;
+	line-height:2.8em;
+	font-size:1.2em;
+	color:#FFF;}
+.table table .curr{
+	color:#ffcb80;
+	}
+.table table th img{
+	display:block;
+	margin:0 auto;
+	width:60%;}
+.table table tr{
+	border-bottom:#3caaff solid 1px;}
+.table table tr:last-child{
+	border-bottom:none;
+	}	
+
+@media (max-width:445px){
+.ruler{
+	font-size:80%}	
+	}
+@media (max-width:445px){
+.ruler{
+	font-size:70%}	
+	}
+.sayabout{
+	width:80%;
+	margin:0 auto;
+	padding-top:20%;
+	padding-bottom:30%;
+	position:relative;}
+
+.sayabout img{
+	width:100%;}
+
+.sayabout button{
+	width:40%;
+	position:absolute;
+	left:30%;
+	top:60%;
+	height:2.6em;
+	border-radius:1.8em;
+	color:#ff5a00;
+	font-size:1.8em;
+	border:none;
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#eff8ff), to(#b1deff));
+	background:-moz-gradient(linear, 0 0, 0 100%, from(#eff8ff), to(#b1deff));
+	background:-ms-gradient(linear, 0 0, 0 100%, from(#eff8ff), to(#b1deff));
+	background:-o-gradient(linear, 0 0, 0 100%, from(#eff8ff), to(#b1deff));
+	background:gradient(linear, 0 0, 0 100%, from(#eff8ff), to(#b1deff));
+	}
+
+
+/*--------通用知识答题---------*/
+.normal{
+	max-width:640px;
+	width:100%;
+	margin:0 auto;
+	background:url(../images/normal.png) no-repeat;
+	background-size:100%;
+	background-position:center bottom;
+	height:100%;
+	}
+	
+.normaler{
+	max-width:640px;
+	width:100%;
+	margin:0 auto;
+	background:url(../images/normal1.png) no-repeat;
+	background-size:100%;
+	background-position:center bottom;
+	height:100%;
+	}	
+.normaler1{
+	max-width:640px;
+	width:100%;
+	margin:0 auto;
+	background:url(../images/normal2.png) no-repeat;
+	background-size:100%;
+	background-position:center bottom;
+	height:100%;
+	}	
+.normaler2{
+	max-width:640px;
+	width:100%;
+	margin:0 auto;
+	background:url(../images/normal3.png) no-repeat;
+	background-size:100%;
+	background-position:center bottom;
+	height:100%;
+	}	
+	
+.normal1{
+	width:86%;
+	margin:0 auto;
+	padding-top:1.0em;}	
+#timer{
+	width:50%;
+	float:left;
+	font-size:1.2em;
+	color:#373737;}
+.normal p{
+	display:block;
+	width:46%;
+	float:left;
+	text-align:right;
+	font-size:1.2em;
+	color:#373737;}
+.normal p span{
+	color:#ff5704;}	
+
+.normal2{
+	width:86%;
+	margin:0 auto;
+	clear:both;
+	margin-top:3.0em}
+		
+.normal h3{
+	width:8%;
+	display:block;
+	clear:both;
+	color:#454545;
+	font-size:1.2em;
+	float:left;
+	padding-top:2.5em;
+	}	
+	
+	
+.normal h2{
+	width:90%;
+	margin:0 auto;
+	display:block;
+	color:#454545;
+	font-size:1.2em;
+	padding-top:2.5em;}
+.normal h2 span{
+	text-decoration:underline;}
+
+.normal ul,.normal3{
+	width:77.8%;
+	margin:0 auto;
+	margin-top:3.8em;}
+
+.normal ul li{
+	width:100%;
+	background-color:#98d3ff;
+	height:3.0em;
+	line-height:3.0em;
+	margin:0.4em 0em;
+	font-size:1.2em;
+	color:#333;}
+
+.normal ul li input{
+	margin-left:1.4em;
+	margin-top:0.8em;
+	margin-right:1em;
+	}
+.normal3 a button{
+	width:45%;
+	height:2.6em;
+	font-size:1.4em;
+	background-color:#ff9000;
+	border:none;
+	border-radius:0.2em;
+	float:left;
+	color:#FFF}	
+
+.normal3 a+a button{
+	width:45%;
+	height:2.6em;
+	font-size:1.4em;
+	background-color:#a0a0a0;
+	border:none;
+	border-radius:0.2em;
+	float:right;}
+
+
+/*--------铁路答题信息---------*/
+.body3{
+	background-color:#c5def3;
+	
+	}
+.information{
+	max-width:640px;
+	width:100%;
+	margin:0 auto;
+	height:100%;
+	background:url(../images/inf.png) no-repeat;
+	background-size:100%;
+	background-position:center bottom;
+	font-size:100%;
+	}
+
+.inf{
+	width:86%;
+	position:relative;
+	margin:0 auto;
+	height:80%;
+	position:relative;}	
+	
+.infom{
+	width:78%;
+	position:relative;
+	margin:0 auto;
+	height:80%;
+	position:relative;
+	}
+.inf1{
+	width:84%;
+	position:absolute;
+	left:8%;
+	top:20%;
+	z-index:1}
+.inf1 p{
+	color:#777777;
+	font-size:1.4em;}
+.inf1 ul li{
+	clear:both;
+	height:2.8em;
+	margin:2em 0em;}	
+.inf1 ul li label{
+	width:25.5%;
+	display:block;
+	text-align:center;
+	float:left;
+	background-color:#e87c1c;
+	font-size:1.4em;
+	color:#FFF;	
+	height:2.8em;
+	line-height:2.8em}
+		
+.inf1 ul li input{
+	width:70%;
+	padding-left:3%;
+	height:2.8em;
+	font-size:1.4em;
+	border:none;
+	color:#494949;
+	}	
+	
+.inf1 ul li select{
+	width:73%;
+	padding-left:3%;
+	height:2.8em;
+	font-size:1.4em;
+	border:none;
+	color:#494949;
+	}
+
+.inf1 button{
+	display:block;
+	width:50%;
+	margin:0 auto;
+	height:2.8em;
+	font-size:1.4em;
+	color:#FFF;
+	margin-top:3.0em;
+	background-color:#ff7d0a;
+	border-radius:8px;
+	border:none;
+	}	
+	
+	
+.cover{
+	width:100%;
+	height:100%;
+	background-color:#FFF;
+	opacity:0.4;
+	position:absolute;
+	left:0;
+	top:12%;
+	border-radius:8px;
+	z-index:0;}	
+@media(max-width:406px){
+	.information{
+		font-size:80%;
+		}
+	
+	
+	}	
+ 
+.if h2{
+	font-size:2.2em;
+	color:#ff6c00;}
+.if h3{
+	font-size:2.0em;
+	color:#545454;
+	border-bottom:#9dc1d8 solid 1px;
+	margin-top:-1em;
+	padding-bottom:0.4em;}
+.if h3 span{
+	font-size:2em;
+	color:#ff6c00;}
+.if p{
+	font-size:1.8em;
+	color:#ff6c00;
+	margin-top:1.8em;
+	letter-spacing:0.1em;}
+
+.if p span{
+	color:#545454;}
+
+.if p span b{
+    color:#ff6c00;
+	text-decoration:underline;}
+.if img{
+	display:block;
+	margin:0 auto;
+	width:34%;
+	margin-top:30%;}
+.if a{
+	    display:block;
+	    margin:0 auto;
+	    text-align:center;
+	    color:#ff6c00;
+	    font-size:1.4em;
+	    margin-top:14px;
+	    width:34%;
+	    border:#ff6c00 solid 1px;
+	    padding:0.4em;}
+/*--------竞赛答题---------*/
+.skill{
+	width:100%;
+	height:3.6em;
+	line-height:3.6em;
+	background-color:#1889dd;
+	text-align:center;
+	color:#FFF;
+	font-size:1.4em;
+}
+.nono{
+	overflow:hidden;
+	border-bottom:#b6dbf6 solid 1px;
+	padding-bottom:0.8em;}
+.normal3 .saf{
+	background-color:#2c88d5;}
+
+
+.cao ul li label{
+	background-color:#1889dd;}
+.cao  button{
+	background-color:#1889dd;}
+
+.rulerbg
+{
+    background:url(../images/rulenew1.jpg) no-repeat;
+    background-position:center bottom;
+    }
+
+
+
+
+

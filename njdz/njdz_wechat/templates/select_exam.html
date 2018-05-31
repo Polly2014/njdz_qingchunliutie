@@ -1,0 +1,38 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>答题类型--南京东站</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery-1.9.1.min.js' %}" type="text/javascript"></script>
+</head>
+<body class="select_body">
+    <div id="exam_select_page">
+        <div class="exam_select_menu">
+            <a href="/thzh/">
+                <img src="/static/images/exam_1.png" alt="题海纵横"/>
+    		</a> 
+    		<a href="/zfdm/">
+                <img src="/static/images/exam_2.png" alt="争分夺秒"/>
+    		</a>
+            <a href="/yzdd/">
+                <img src="/static/images/exam_3.png" alt="一战到底"/>
+    		</a> 
+    		<a href="#" onclick="ExamNotOpen();">
+                <img src="/static/images/exam_4.png" alt="终极挑战"/>
+    		</a>
+            <a href="/">
+                <img src="/static/images/return.png" alt="返回"/>
+            </a>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+function ExamNotOpen(){
+    alert("该模块暂未开放！");
+};
+</script>
+</html>
